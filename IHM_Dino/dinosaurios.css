@@ -1,0 +1,197 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  background-image: url('https://www.transparenttextures.com/patterns/rocky-wall.png');
+  background-color: #3d3d3d;
+  color: #fff;
+  animation: entradaFachera 1.2s ease-in-out;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* ---------- CABECERA ---------- */
+header {
+  background-color: #2c2c2c;
+  padding: 1em;
+  text-align: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #a5e65a; /* Color de acento */
+}
+
+/* ---------- NAVEGACIÓN ---------- */
+nav {
+  margin-top: 0.8em;
+}
+
+nav a {
+  margin: 0 0.8em;
+  color: #a5e65a;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+  color: #7cc543;
+  transform: translateY(-2px);
+}
+
+/* ---------- BIENVENIDA ---------- */
+.bienvenida-usuario {
+  text-align: center;
+  margin: 1.5em auto 0.5em auto;
+  font-size: 1.4em;
+  color: #a5e65a;
+  padding: 0.5em 1em;
+  /* Usar la variable CSS para que se adapte al tema */
+  background-color: var(--c-bg-sec);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- CONTENIDO PRINCIPAL ---------- */
+main {
+  flex: 1;
+  padding: 1em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedor-dinos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;                 /* Espacio entre tarjetas */
+  margin-top: 2em;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* ---------- TARJETAS ---------- */
+.tarjeta-dino {
+  background-color: #222;
+  border: 2px solid #555;
+  border-radius: 12px;
+  width: 280px;
+  padding: 1.2em;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tarjeta-dino:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.tarjeta-dino img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.8em;
+}
+
+.tarjeta-dino h3 {
+  margin-top: 0.5em;
+  color: #a5e65a;
+  font-size: 1.3em;
+}
+
+.tarjeta-dino p {
+  font-size: 1em;
+  color: inherit;   /* ← hereda el color del tema activo */
+  line-height: 1.4;
+}
+
+/* ---------- PIE DE PÁGINA ---------- */
+footer {
+  background-color: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 1em;
+  font-size: 0.9em;
+  border-top: 1px solid #444;
+  width: 100%;
+  margin-top: 3em;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- ANIMACIONES ---------- */
+@keyframes entradaFachera {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ---------- MEDIA QUERIES ---------- */
+@media (max-width: 1024px) {
+  .contenedor-dinos { gap: 1.5em; }
+  .tarjeta-dino { width: 260px; }
+}
+
+@media (max-width: 768px) {
+  header h1 { font-size: 1.8em; }
+  nav a { font-size: 1em; margin: 0 0.5em; }
+  .bienvenida-usuario { font-size: 1.2em; }
+  main { padding: 1em; }
+  .contenedor-dinos {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+  }
+  .tarjeta-dino {
+    width: 90%;
+    max-width: 350px;
+    padding: 1em;
+  }
+  .accesibilidad { /* Solo organización del contenedor */
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.5em; }
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  nav a { margin: 0.3em 0; }
+  .bienvenida-usuario { font-size: 1em; }
+  .tarjeta-dino {
+    width: 100%;
+    max-width: 300px;
+  }
+}

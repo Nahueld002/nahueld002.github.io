@@ -1,0 +1,107 @@
+/* -------------------------------------------------
+   ESTILOS EXCLUSIVOS DEL FORMULARIO DE REGISTRO
+   (colores heredados vía variables definidas por
+   base.css + accesibilidad.css)
+   ------------------------------------------------- */
+
+/* ---------- CONTENEDOR CENTRADO ---------- */
+main{
+  flex:1; display:flex; align-items:center; justify-content:center;
+  padding:2em;
+}
+
+/* ---------- FORMULARIO ---------- */
+form{
+  background:var(--c-card-bg);              /* hereda del tema */
+  color:var(--c-card-text);
+  border:1px solid var(--c-card-border);
+  border-radius:12px;
+  padding:1.5em 2em;
+  max-width:450px; width:100%;
+  box-shadow:0 0 20px rgba(0,0,0,.6);
+}
+
+label{
+  display:block; margin-bottom:.4em;
+  font-weight:bold; color:var(--c-acento);
+}
+
+input, textarea, select{
+  width:100%; padding:.6em .8em; font-size:1em;
+  margin-bottom:.8em;
+  border:1px solid var(--c-card-border);
+  border-radius:6px;
+  background:var(--c-bg-sec, #1a1a1a);      /* fallback si un tema no define var */
+  color:var(--c-text);
+  transition:border-color .3s, box-shadow .3s;
+}
+input:focus, textarea:focus, select:focus{
+  border-color:var(--c-acento);
+  box-shadow:0 0 0 2px color-mix(in srgb, var(--c-acento) 50%, transparent);
+  outline:none;
+}
+
+/* ---------- BOTÓN DE ENVÍO ---------- */
+form button[type="submit"]{
+  display:block; width:100%; margin-top:1em;
+  padding:.7em 1.5em; font-size:1.1em;
+  background:var(--c-acento); color:#fff; border:none; border-radius:6px;
+  cursor:pointer;
+  transition:background .3s, transform .2s, box-shadow .3s;
+  box-shadow:0 4px 8px rgba(0,0,0,.3);
+}
+form button[type="submit"]:hover{
+  background:color-mix(in srgb, var(--c-acento) 80%, black);
+  transform:translateY(-2px);
+  box-shadow:0 6px 12px rgba(0,0,0,.4);
+}
+
+/* ---------- MENSAJERÍA ---------- */
+.error-message{
+  color:#ff6b6b; font-size:.85em;
+  margin-top:-.6em; margin-bottom:.5em; min-height:1.2em;
+}
+
+/* Feedback de contraseña */
+.password-feedback{
+  font-size:.85em; margin-top:-.6em; margin-bottom:.5em;
+}
+.password-feedback p{ margin:.2em 0; padding-left:1.2em; position:relative; }
+.password-feedback p.valid  { color:#4caf50; }
+.password-feedback p.invalid{ color:#ff6b6b; }
+.password-feedback p.valid::before,
+.password-feedback p.invalid::before{
+  position:absolute; left:0; font-weight:bold;
+}
+.password-feedback p.valid::before  { content:'✓'; color:#4caf50; }
+.password-feedback p.invalid::before{ content:'✗'; color:#ff6b6b; }
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+  main{ padding:1em; }
+  form{ padding:1em 1.2em; border-radius:8px; }
+  label{ font-size:.9em; }
+  input, textarea, select,
+  form button[type="submit"]{ font-size:.95em; padding:.5em .7em; }
+  .error-message, .password-feedback{ font-size:.8em; }
+}
+@media(max-width:480px){
+  form{ padding:.8em 1em; }
+  input, textarea, select,
+  form button[type="submit"]{ font-size:.9em; }
+}
+
+/* =========================================================
+   OVERRIDE ESPECÍFICO PARA EL TEMA TRITANOPÍA
+   Mejora contraste: fondo turquesa medio + texto blanco
+   ========================================================= */
+body.tema-daltonismo-tri input,
+body.tema-daltonismo-tri textarea,
+body.tema-daltonismo-tri select{
+  background:#2a6f78;               /* turquesa medio (contraste AA) */
+  color:#ffffff;                    /* texto blanco */
+  border:2px solid #d62f2f;         /* rojo acento ya usado en el tema */
+}
+body.tema-daltonismo-tri ::placeholder{
+  color:#e2f7f9; opacity:1;         /* placeholder legible */
+}
