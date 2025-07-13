@@ -1,0 +1,313 @@
+/* -----------------------------------------------------------
+   TEMAS DE ACCESIBILIDAD
+   ----------------------------------------------------------- */
+
+/* ===== Variables globales =====
+   base.css y login.css consumen:
+   --c-bg • --c-bg-sec • --c-text • --c-acento
+   --c-card-bg • --c-card-border • --c-card-text
+   =============================================== */
+
+
+/* ────────── 1 · CONTRASTE ALTO ────────── */
+.contraste-alto{
+  --c-bg:#000; --c-bg-sec:#000;
+  --c-text:yellow; --c-acento:#ffea00;          /* amarillo puro ≈ #FFEA00 */
+  --c-card-bg:#111; --c-card-border:#ffea00; --c-card-text:#ffea00;
+
+  background:#000 !important; color:var(--c-text) !important;
+}
+.contraste-alto .tarjeta-dino{
+  background:#111; border-color:var(--c-card-border);
+  box-shadow:0 0 15px rgba(255,255,0,.5);
+}
+.contraste-alto .tarjeta-dino h3,
+.contraste-alto .tarjeta-dino p,
+.contraste-alto .bienvenida-usuario,
+.contraste-alto header h1,
+.contraste-alto nav a{ color:var(--c-card-text) !important; }
+
+.contraste-alto input,
+.contraste-alto button,
+.contraste-alto textarea,
+.contraste-alto select{
+  background:#222; color:var(--c-text); border:1px solid var(--c-card-border);
+}
+
+
+/* ────────── 2 · MODO DIURNO ────────── */
+.tema-diurno{
+  --c-bg:#e2e2e2; --c-bg-sec:#c7c7c7;
+  --c-text:#202020; --c-acento:#0c0c0c;        /* negro más profundo para encabezados */
+  --c-card-bg:#ffffff; --c-card-border:#b5b5b5; --c-card-text:#202020;
+
+  background:var(--c-bg) !important;
+  background-image:url('https://www.transparenttextures.com/patterns/rocky-wall.png');
+  background-blend-mode:multiply; background-size:256px;
+  color:var(--c-text) !important;
+}
+
+.tema-diurno header{ /* Ajuste para que el header coincida con el footer */
+  background:var(--c-bg-sec);
+}
+
+.tema-diurno .tarjeta-dino{
+  background:var(--c-card-bg); border:1px solid var(--c-card-border);
+  box-shadow:0 0 12px rgba(0,0,0,.08);
+}
+.tema-diurno .tarjeta-dino h3,
+.tema-diurno .tarjeta-dino p,
+.tema-diurno .bienvenida-usuario,
+.tema-diurno header h1,
+.tema-diurno nav a{ color:var(--c-text) !important; }
+
+.tema-diurno nav a:hover{ color:#000; }
+
+.tema-diurno footer{
+  background:var(--c-bg-sec); box-shadow:0 4px 8px rgba(0,0,0,.1);
+}
+
+
+/* ============ AJUSTES VISIBILIDAD · TRITANOPÍA ============ */
+.tema-daltonismo-tri{
+  /* paleta revisada: fondo y tarjeta iguales, texto y acento muy contrastados */
+  --c-bg:#ffeceb;             /* rosa pálido                  */
+  --c-bg-sec:#0e4952;         /* azul-verdoso más oscuro      */
+  --c-text:#12383d;           /* azul-verdoso muy oscuro      */
+  --c-acento:#d62f2f;         /* rojo medio vivo (botones)    */
+  --c-card-bg:#ffeceb;
+  --c-card-border:#d62f2f;
+  --c-card-text:#12383d;
+
+  /* Asegura que el fondo del body y main sean correctos */
+  background:var(--c-bg) !important;
+  color:var(--c-text) !important;
+}
+
+/* Asegura que las tarjetas usen el fondo de la tarjeta del tema */
+.tema-daltonismo-tri .tarjeta-dino{
+  background:var(--c-card-bg);
+  border-color:var(--c-card-border);
+  box-shadow:0 0 15px rgba(214,47,47,.5); /* Sombra con el color de acento */
+}
+
+/* ---------- CABECERA (título + barra de accesibilidad) ---------- */
+.tema-daltonismo-tri header{
+  background:var(--c-bg-sec);
+  box-shadow:0 4px 10px rgba(0,0,0,.45);
+}
+.tema-daltonismo-tri header h1{
+  color:#ffffff !important;               /* blanco puro sobre bg oscuro */
+}
+.tema-daltonismo-tri nav a{
+  color:#ffffff !important;
+}
+.tema-daltonismo-tri nav a:hover{
+  color:#fffbfb !important;
+}
+
+/* ---------- BOTONES DE ACCESIBILIDAD ---------- */
+.tema-daltonismo-tri .accesibilidad button{
+  background:var(--c-acento);
+  color:#ffffff;                           /* texto/emojis claros */
+  border:1px solid var(--c-acento);
+}
+.tema-daltonismo-tri .accesibilidad button:hover{
+  background:#ef6464;                      /* rojo algo más claro */
+}
+
+/* ---------- TARJETAS (solo refuerzo de texto) ---------- */
+.tema-daltonismo-tri .tarjeta-dino h3,
+.tema-daltonismo-tri .tarjeta-dino p{
+  color:var(--c-card-text) !important;
+}
+
+/* ---------- FOOTER ---------- */
+.tema-daltonismo-tri footer{
+  background:var(--c-bg-sec);
+  color:#fffbfb;
+  box-shadow:0 -4px 10px rgba(0,0,0,.45);
+}
+.tema-daltonismo-tri footer p,
+.tema-daltonismo-tri footer a{
+  color:#fffbfb !important;                /* evita herencia oscura */
+}
+
+/* ---------- MEJOR FILTRO PARA IMÁGENES (mantener detalle) ---------- */
+.tema-daltonismo-tri img{
+  filter: sepia(0.8) saturate(1.2) hue-rotate(-20deg) contrast(1.1);
+}
+
+
+/* ────────── 4 · BAJA VISIÓN ────────── */
+.tema-baja-vision{
+  --c-bg:#000; --c-bg-sec:#000;
+  --c-text:#ffffff; --c-acento:#ffffff;
+  --c-card-bg:#0d0d0d; --c-card-border:#ffffff; --c-card-text:#ffffff;
+
+  background:#000 !important;
+  color:var(--c-text) !important;
+  letter-spacing:.12em;
+  word-spacing:.16em;
+  line-height:1.6em;
+  font-size: 17px !important; /* Base font size + 1px from default 16px */
+  font-weight: bold !important; /* All text bold */
+}
+
+/* Aplica contorno de texto y asegura negrita para la mayoría de los elementos de texto */
+.tema-baja-vision h1,
+.tema-baja-vision h3,
+.tema-baja-vision p,
+.tema-baja-vision a,
+.tema-baja-vision label,
+.tema-baja-vision li,
+.tema-baja-vision .bienvenida-usuario {
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000; /* Contorno negro para texto blanco */
+  font-weight: bold !important; /* Asegura que todos los textos sean negrita */
+}
+
+/* Elimina el contorno de texto para botones y campos de entrada */
+.tema-baja-vision button,
+.tema-baja-vision input,
+.tema-baja-vision textarea,
+.tema-baja-vision select {
+  text-shadow: none !important; /* Elimina el contorno */
+}
+
+/* Nuevas reglas para el botón de registrarse y todos los botones en el tema de baja visión */
+.tema-baja-vision form button[type="submit"],
+.tema-baja-vision .accesibilidad button { /* Targeting all buttons */
+  background: #ffffff !important; /* Fondo blanco */
+  color: #000000 !important;     /* Texto negro */
+  font-weight: bold !important;  /* Texto en negrita */
+  border: 1px solid #000000 !important; /* Borde negro para contraste */
+}
+
+.tema-baja-vision form button[type="submit"]:hover,
+.tema-baja-vision .accesibilidad button:hover {
+  background: #d9d9d9 !important; /* Un gris claro al pasar el ratón */
+}
+
+
+/* Ajusta el tamaño de fuente para elementos que tienen tamaños explícitos */
+.tema-baja-vision header h1 {
+  font-size: calc(2em + 1px) !important;
+}
+.tema-baja-vision nav a {
+  font-size: calc(1.1em + 1px) !important;
+}
+.tema-baja-vision .bienvenida-usuario {
+  font-size: calc(1.4em + 1px) !important;
+}
+.tema-baja-vision .tarjeta-dino h3 {
+  font-size: calc(1.3em + 1px) !important;
+}
+.tema-baja-vision .tarjeta-dino p {
+  font-size: calc(1em + 1px) !important;
+}
+.tema-baja-vision input,
+.tema-baja-vision button,
+.tema-baja-vision textarea,
+.tema-baja-vision select {
+  font-size: calc(1.2em + 1px) !important;
+}
+.tema-baja-vision .accesibilidad button {
+  font-size: calc(0.9em + 1px) !important;
+}
+.tema-baja-vision footer p {
+  font-size: calc(0.9em + 1px) !important;
+}
+
+.tema-baja-vision .tarjeta-dino{
+  background:var(--c-card-bg); border:1px solid var(--c-card-border);
+  box-shadow:0 0 15px rgba(255,255,255,.5);
+}
+
+
+/* ────────── 5 · VISIÓN TÚNEL ────────── */
+.tema-vision-tunel{
+  --c-bg:#222; --c-bg-sec:#2f2f2f;
+  --c-text:#ededed; --c-acento:#9eff68;
+  --c-card-bg:#2f2f2f; --c-card-border:#626262; --c-card-text:#ededed;
+}
+
+.tema-vision-tunel main,
+.tema-vision-tunel .contenedor-dinos{
+  max-width:600px; margin:0 auto; padding:1em; align-items:flex-start;
+}
+.tema-vision-tunel body{ background:var(--c-bg); color:var(--c-text); font-size:1.2em; }
+
+.tema-vision-tunel .tarjeta-dino{
+  background:var(--c-card-bg); border:1px solid var(--c-card-border);
+  box-shadow:none; width:100%; max-width:550px; margin-bottom:1.5em;
+}
+.tema-vision-tunel .tarjeta-dino img{ filter:grayscale(100%); }
+
+.tema-vision-tunel header h1,
+.tema-vision-tunel footer p{ display:none !important; }
+
+.tema-vision-tunel .accesibilidad{ display:flex !important; justify-content:center; margin-top:1em; }
+.tema-vision-tunel nav a{ color:var(--c-acento) !important; }
+
+
+/* ────────── BOTONES (BASE + OVERRIDES) ────────── */
+.accesibilidad button{
+  margin:.3em; padding:.4em .8em;
+  background:#4caf50; color:#fff; border:none; border-radius:4px; cursor:pointer;
+  font-size:.9em; transition:background-color .3s, transform .2s;
+}
+.accesibilidad button:hover{ background:#45a049; transform:translateY(-1px); }
+
+.contraste-alto   .accesibilidad button{ background:var(--c-acento); color:#000; border:1px solid var(--c-acento); }
+.contraste-alto   .accesibilidad button:hover{ background:#d4c800; }
+
+.tema-diurno      .accesibilidad button{ background:#0c0c0c; color:#ffffff; border:1px solid #0c0c0c; }
+.tema-diurno      .accesibilidad button:hover{ background:#333; }
+
+.tema-baja-vision .accesibilidad button{ background:#ffffff; color:#000; border:1px solid #ffffff; }
+.tema-baja-vision .accesibilidad button:hover{ background:#d9d9d9; }
+
+.tema-vision-tunel .accesibilidad button{ background:#555; color:#eee; border:1px solid #777; }
+.tema-vision-tunel .accesibilidad button:hover{ background:#777; }
+
+
+/* ────────── TEXTO GRANDE ────────── */
+.texto-grande      { font-size:20px !important; }
+.texto-grande .tarjeta-dino      { transform:scale(1.05); transition:transform .3s; }
+.texto-grande .tarjeta-dino h3,
+.texto-grande .tarjeta-dino p    { font-size:1.1em; }
+.texto-grande .tarjeta-dino img  { transform:scale(1.02); transition:transform .3s; }
+.texto-grande input,
+.texto-grande textarea,
+.texto-grande select,
+.texto-grande button             { font-size:1.2em !important; }
+
+@media(max-width:768px){
+  .texto-grande      { font-size:18px !important; }
+  .texto-grande .contenedor-dinos{ flex-direction:column; align-items:center; gap:1.5em; }
+  .texto-grande .tarjeta-dino { transform:scale(1.02); }
+}
+
+
+/* ────────── ANIMACIONES & MENSAJES ────────── */
+.bienvenida{
+  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(circle,#1e1e1e,#000); color:#fff;
+  animation:aparecer 1s ease-in-out; z-index:999;
+}
+.bienvenida h2.cargando-mundo{ font-size:2.5em; animation:latido 1.5s infinite; }
+
+@keyframes aparecer{ from{opacity:0;transform:scale(.8) blur(5px);} to{opacity:1;transform:scale(1) blur(0);} }
+@keyframes latido  { 0%{transform:scale(1);} 50%{transform:scale(1.05);} 100%{transform:scale(1);} }
+
+.mensaje-exito{ text-align:center; font-weight:bold; color:green; font-size:1.2em; margin-top:1em; transition:opacity .5s; }
+.aparecer-mensaje{ animation:aparecerMensaje 1s forwards; }
+@keyframes aparecerMensaje{ from{opacity:0;transform:scale(.9);} to{opacity:1;transform:scale(1);} }
+
+
+/* ===== Comodines para <p> y listas (coherencia texto) ===== */
+.contraste-alto      p, .contraste-alto li{ color:var(--c-text) !important; }
+.tema-diurno         p, .tema-diurno  li { color:var(--c-text) !important; }
+.tema-daltonismo-tri p, .tema-daltonismo-tri li{ color:var(--c-text) !important; }
+.tema-baja-vision    p, .tema-baja-vision li{ color:var(--c-text) !important; }
+.tema-vision-tunel   p, .tema-vision-tunel  li{ color:var(--c-text) !important; }

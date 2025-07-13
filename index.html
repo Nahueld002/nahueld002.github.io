@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro · Extinciones Asombrosas</title>
+
+  <!-- Estilos -->
+<link rel="stylesheet" href="base.css">
+
+<link rel="stylesheet" href="accesibilidad.css">
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <header>
+    <h1>🦖 Registro · Extinciones Asombrosas</h1>
+
+    <!-- Botonera de accesibilidad (mismos IDs/clases en todas las páginas) -->
+    <div class="accesibilidad">
+      <button onclick="activarTema('contraste-alto')">🌗 Contraste</button>
+      <button onclick="activarTema('tema-diurno')">🌞 Diurno</button>
+      <button onclick="activarTema('tema-daltonismo-tri')">🧿 Daltonismo</button>
+      <button onclick="activarTema('tema-baja-vision')">👓 Baja Visión</button>
+      <button onclick="activarTema('tema-vision-tunel')">🎯 Visión Túnel</button>
+      <button onclick="aumentarTexto()">🔍 Texto</button>
+    </div>
+  </header>
+
+  <main>
+    <form id="formularioRegistro" novalidate>
+      <!-- Nombre -->
+      <label for="nombre">Nombre completo:</label><br>
+      <input type="text" id="nombre" required aria-describedby="error-nombre"><br>
+      <div id="error-nombre" class="error-message" aria-live="polite"></div><br>
+
+      <!-- Cédula -->
+      <label for="cedula">Cédula (6 a 8 dígitos, sin puntos ni guiones):</label><br>
+      <input type="text" id="cedula" pattern="^\d{6,8}$" required aria-describedby="error-cedula"><br>
+      <div id="error-cedula" class="error-message" aria-live="polite"></div><br>
+
+      <!-- Email -->
+      <label for="email">Correo electrónico:</label><br>
+      <input type="email" id="email" required aria-describedby="error-email"><br>
+      <div id="error-email" class="error-message" aria-live="polite"></div><br>
+
+      <!-- Teléfono -->
+      <label for="telefono">Teléfono (formato paraguayo 09XXXXXXXX):</label><br>
+      <input type="tel" id="telefono" pattern="^09\d{8}$" required aria-describedby="error-telefono"><br>
+      <div id="error-telefono" class="error-message" aria-live="polite"></div><br>
+
+      <!-- Contraseña -->
+      <label for="password">Contraseña:</label><br>
+      <input type="password" id="password" required aria-describedby="error-password password-feedback"><br>
+      <div id="error-password" class="error-message" aria-live="polite"></div>
+
+      <div id="password-feedback" class="password-feedback">
+        <p id="length-check" class="invalid">Mín. 8 caracteres</p>
+        <p id="uppercase-check" class="invalid">Al menos 1 mayúscula</p>
+        <p id="number-check"  class="invalid">Al menos 1 número</p>
+      </div><br>
+
+      <button type="submit">Registrarse</button>
+      <div id="mensajeExito" class="mensaje-exito" hidden>✅ Registro exitoso</div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; Proyecto Interfaz Hombre-Máquina</p>
+    <p>Nahuel Matías Domínguez Mayeregger</p>
+  </footer>
+
+  <!-- 1) Script global de temas y texto grande -->
+  <script src="tema-accesibilidad.js"></script>
+
+  <!-- 2) Lógica específica del formulario -->
+  <script>
+    /* ---------- VALIDACIONES ---------- */
+    const formulario   = document.getElementById("formularioRegistro");
+    const nombreInput  = document.getElementById("nombre");
+    const cedulaInput  = document.getElementById("cedula");
+    const emailInput   = document.getElementById("email");
+    const telefonoInput= document.getElementById("telefono");
+    const passwordInput= document.getElementById("password");
+    const mensajeExito = document.getElementById("mensajeExito");
+
+    const lengthCheck     = document.getElementById("length-check");
+    const uppercaseCheck  = document.getElementById("uppercase-check");
+    const numberCheck     = document.getElementById("number-check");
+
+    function showError(el, msg){
+      const div = document.getElementById("error-"+el.id);
+      if(div){ div.textContent = msg; el.setAttribute("aria-invalid","true"); }
+    }
+    function clearError(el){
+      const div = document.getElementById("error-"+el.id);
+      if(div){ div.textContent = ""; el.removeAttribute("aria-invalid"); }
+    }
+
+    // Validación de Cédula: 6 a 8 dígitos numéricos
+    cedulaInput.addEventListener("input", ()=> {
+      /^\d{6,8}$/.test(cedulaInput.value) ? clearError(cedulaInput)
+                                        : showError(cedulaInput,"Debe contener entre 6 y 8 dígitos numéricos.");
+    });
+
+    // Validación de Teléfono: 09 seguido de 8 dígitos
+    telefonoInput.addEventListener("input", ()=> {
+      /^09\d{8}$/.test(telefonoInput.value) ? clearError(telefonoInput)
+                                                 : showError(telefonoInput,"Ej: 09XXXXXXXX (10 dígitos en total).");
+    });
+
+    // Validación de Email: formato estándar de correo electrónico
+    emailInput.addEventListener("input", ()=> {
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value) ? clearError(emailInput)
+                                                         : showError(emailInput,"Formato de correo inválido.");
+    });
+
+    // Validación de Contraseña: Mín. 8 caracteres, al menos 1 mayúscula, al menos 1 número
+    passwordInput.addEventListener("input", ()=> {
+      const v = passwordInput.value;
+      const okLen  = v.length >= 8;
+      const okUp   = /[A-Z]/.test(v);
+      const okNum  = /\d/.test(v);
+
+      lengthCheck.classList.toggle("valid", okLen);
+      lengthCheck.classList.toggle("invalid", !okLen);
+
+      uppercaseCheck.classList.toggle("valid", okUp);
+      uppercaseCheck.classList.toggle("invalid", !okUp);
+
+      numberCheck.classList.toggle("valid", okNum);
+      numberCheck.classList.toggle("invalid", !okNum);
+
+      (okLen && okUp && okNum) ? clearError(passwordInput)
+                               : showError(passwordInput,"La contraseña no cumple con los requisitos.");
+    });
+
+    formulario.addEventListener("submit", e=>{
+      e.preventDefault();
+
+      // Dispara eventos de input para mostrar mensajes y verificar errores
+      [nombreInput, cedulaInput, emailInput, telefonoInput, passwordInput].forEach(el => el.dispatchEvent(new Event("input")));
+
+      // Si existe algún error visible, no continuar
+      if([...document.querySelectorAll(".error-message")].some(d => d.textContent !== "")) {
+        // Enfocar el primer campo con error para mejorar la UX
+        const firstErrorField = document.querySelector(".error-message:not(:empty)").previousElementSibling;
+        if (firstErrorField) {
+          firstErrorField.focus();
+        }
+        return;
+      }
+
+      mensajeExito.hidden = false;
+      mensajeExito.classList.add("aparecer-mensaje");
+
+      setTimeout(()=>{
+        document.querySelector("main").style.display="none";
+        mensajeExito.hidden = true;
+
+        const splash = document.createElement("div");
+        splash.className="bienvenida";
+        splash.innerHTML='<h2 class="cargando-mundo">🌍 Cargando el viejo mundo...</h2>';
+        document.body.appendChild(splash);
+
+        localStorage.setItem("nombreUsuario", nombreInput.value);
+
+        setTimeout(()=>location.href="dinosaurios.html", 4000);
+      },1500);
+    });
+  </script>
+</body>
+</html>
